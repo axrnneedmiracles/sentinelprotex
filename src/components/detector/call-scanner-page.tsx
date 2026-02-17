@@ -118,7 +118,7 @@ export function CallScannerPage() {
                                 <p className="text-sm text-muted-foreground">Recording... Say the suspicious part clearly.</p>
                             </div>
                         ) : (
-                             <p className="text-sm text-muted-foreground">Click below to start listening. Keep it under 60 seconds.</p>
+                             <p className="text-sm text-muted-foreground">Click below to start listening.</p>
                         )}
                         
                         <div className="flex justify-center gap-4">
