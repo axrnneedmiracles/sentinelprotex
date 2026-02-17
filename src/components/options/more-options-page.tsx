@@ -1,4 +1,3 @@
-
 'use client';
 
 import { Chrome, PhoneCall, ShieldAlert, MailSearch } from 'lucide-react';
@@ -6,28 +5,38 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 
+interface MoreOptionsPageProps {
+  onOptionClick?: (id: string) => void;
+}
+
 const options = [
   {
+    id: 'extension',
     icon: <Chrome className="text-primary w-6 h-6" />,
     title: 'Web Extension',
     description: 'Real-time phishing protection directly in your browser. Blocks malicious domains as you browse.',
-    status: 'Coming Soon'
+    status: 'Coming Soon',
+    action: 'Learn More'
   },
   {
+    id: 'call-scanner',
     icon: <PhoneCall className="text-primary w-6 h-6" />,
     title: 'On-Call Detection',
     description: 'AI-powered scanning for suspicious call transcripts and voice phishing indicators.',
-    status: 'Development'
+    status: 'Live',
+    action: 'Open Scanner'
   },
   {
+    id: 'leaked-db',
     icon: <MailSearch className="text-primary w-6 h-6" />,
     title: 'Leaked DB Scan',
     description: 'Cross-reference your email address against massive datasets of known global data breaches.',
-    status: 'Beta'
+    status: 'Beta',
+    action: 'Scan Now'
   },
 ];
 
-export function MoreOptionsPage() {
+export function MoreOptionsPage({ onOptionClick }: MoreOptionsPageProps) {
   return (
     <div className="w-full max-w-3xl space-y-8 animate-in fade-in zoom-in-95">
       <Card className="bg-card/30 backdrop-blur-lg border-primary/20">
@@ -58,8 +67,14 @@ export function MoreOptionsPage() {
                 </p>
               </CardContent>
               <div className="p-4 pt-0">
-                 <Button variant="outline" size="sm" className="w-full cursor-target text-xs" disabled>
-                    Learn More
+                 <Button 
+                    variant={option.status === 'Live' ? 'default' : 'outline'} 
+                    size="sm" 
+                    className="w-full cursor-target text-xs" 
+                    disabled={option.status === 'Coming Soon'}
+                    onClick={() => onOptionClick?.(option.id)}
+                 >
+                    {option.action}
                  </Button>
               </div>
             </Card>

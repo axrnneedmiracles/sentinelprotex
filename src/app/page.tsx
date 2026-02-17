@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -25,9 +24,10 @@ import { useAdmin } from '@/context/admin-context';
 import { incrementScanCount, incrementVisitorCount } from '@/lib/firebase-actions';
 import { ScreenshotScannerPage } from '@/components/detector/screenshot-scanner-page';
 import { MoreOptionsPage } from '@/components/options/more-options-page';
+import { CallScannerPage } from '@/components/detector/call-scanner-page';
 
 type ScanStatus = 'idle' | 'scanning' | 'success' | 'error';
-type View = 'home' | 'detector' | 'community' | 'about' | 'admin' | 'admin-login' | 'more-options' | 'screenshot';
+type View = 'home' | 'detector' | 'community' | 'about' | 'admin' | 'admin-login' | 'more-options' | 'screenshot' | 'call-scanner';
 
 export default function Home() {
   const [status, setStatus] = useState<ScanStatus>('idle');
@@ -107,12 +107,14 @@ export default function Home() {
         return <ImageDetectorPage />;
       case 'screenshot':
         return <ScreenshotScannerPage />;
+      case 'call-scanner':
+        return <CallScannerPage />;
       case 'community':
         return <CommunityPage prefilledReport={prefilledReport} onFormSubmit={() => setPrefilledReport(null)} />;
       case 'about':
         return <AboutPage />;
       case 'more-options':
-        return <MoreOptionsPage />;
+        return <MoreOptionsPage onOptionClick={(id) => setCurrentView(id as View)} />;
       case 'admin-login':
         return <AdminLogin onLoginSuccess={() => setCurrentView('admin')} />;
       case 'admin':

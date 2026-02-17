@@ -35,6 +35,18 @@ export type ScreenshotAnalysisResult = {
     error?: string;
 };
 
+export type CallAnalysisResult = {
+    id: string;
+    audioUrl: string;
+    isScam: boolean;
+    riskScore: number;
+    transcript: string;
+    explanation: string;
+    recommendedActions: string;
+    analyzedAt: string;
+    error?: string;
+};
+
 export type ScanHistoryItem = ScanResult & {
     id: string;
     scannedAt: string;
