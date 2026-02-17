@@ -36,6 +36,7 @@ If your project is already linked to another repository and you want to switch i
 1. **Check current remote:** `git remote -v`
 2. **Set new URL:** `git remote set-url origin https://github.com/YOUR_USERNAME/NEW_REPO.git`
 3. **Verify:** `git remote -v`
+4. **Push:** `git push -u origin main`
 
 ### Vercel Hosting
 1. Connect your GitHub repository to [Vercel](https://vercel.com).
