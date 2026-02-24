@@ -16,13 +16,20 @@ export function useAnalytics() {
   const firestore = useFirestore();
 
   useEffect(() => {
+    if (!firestore) return;
+
     const statsRef = doc(firestore, 'analytics', 'stats');
 
     const unsubscribe = onSnapshot(
       statsRef,
       (docSnap) => {
         if (docSnap.exists()) {
-          setStats(docSnap.data() as AnalyticsStats);
+          const data = docSnap.data();
+          // Added safety defaults to avoid "Missing property" if fields are not initialized
+          setStats({
+            totalVisits: typeof data.totalVisits === 'number' ? data.totalVisits : 0,
+            totalScans: typeof data.totalScans === 'number' ? data.totalScans : 0,
+          } as AnalyticsStats);
         } else {
           setStats(initialState);
         }

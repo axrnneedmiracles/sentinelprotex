@@ -1,4 +1,3 @@
-
 'use client';
 
 import { createContext, useContext, ReactNode, useCallback } from 'react';
@@ -40,7 +39,20 @@ export function CommunityProvider({ children }: { children: ReactNode }) {
   
   const [reportsSnapshot, loading, error] = useCollection(reportsQuery);
 
-  const allReports = reportsSnapshot ? reportsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Report)) : [];
+  // Added safety defaults to prevent "Missing property" errors if fields are missing in Firestore
+  const allReports = reportsSnapshot ? reportsSnapshot.docs.map(d => {
+    const data = d.data();
+    return {
+      id: d.id,
+      title: data.title || 'Untitled Report',
+      url: data.url || 'No URL provided',
+      author: data.author || 'Anonymous',
+      comment: data.comment || '',
+      rating: typeof data.rating === 'number' ? data.rating : 0,
+      time: data.time || null,
+      isApproved: !!data.isApproved,
+    } as Report;
+  }) : [];
   
   const reports = allReports.filter(r => r.isApproved);
   const pendingReports = allReports.filter(r => !r.isApproved);
