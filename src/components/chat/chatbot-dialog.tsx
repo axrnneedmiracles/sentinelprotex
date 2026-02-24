@@ -22,13 +22,13 @@ interface ChatBotDialogProps {
 const QUICK_OPTIONS = [
   { id: 'scammed', label: "I've been scammed", icon: <ShieldAlert className="w-3 h-3" /> },
   { id: 'bank', label: "Bank Support", icon: <Landmark className="w-3 h-3" /> },
-  { id: 'report', label: "Report to Cybercrime", icon: <Phone className="w-3 h-3" /> },
+  { id: 'report', label: "Report Scam", icon: <Phone className="w-3 h-3" /> },
   { id: 'tips', label: "Security Tips", icon: <HelpCircle className="w-3 h-3" /> },
 ];
 
 export function ChatBotDialog({ open, onClose }: ChatBotDialogProps) {
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'bot', content: 'Hello! I am Nayra, your Sentinel Assistant. I specialize in forensic scam recovery. How can I protect you today? Select an option below or tell me what happened.' },
+    { role: 'bot', content: "Hello! I am Nayra, your Sentinel Forensic Assistant. If you've encountered a scam, I'm here to help you recover. \n\nWhat happened? Please tell me which bank was involved and the approximate amount if any was lost." },
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -80,8 +80,8 @@ export function ChatBotDialog({ open, onClose }: ChatBotDialogProps) {
   if (!open) return null;
 
   return (
-    <div className="fixed bottom-28 right-8 z-[100] w-[90vw] md:w-[450px] animate-in slide-in-from-bottom-10 fade-in duration-300">
-      <Card className="bg-card/95 backdrop-blur-2xl border-primary/40 shadow-[0_0_50px_rgba(103,58,183,0.3)] flex flex-col h-[600px] rounded-3xl overflow-hidden">
+    <div className="fixed bottom-24 right-8 z-[100] w-[90vw] md:w-[420px] animate-in slide-in-from-bottom-10 fade-in duration-300">
+      <Card className="bg-card/95 backdrop-blur-2xl border-primary/40 shadow-[0_0_50px_rgba(103,58,183,0.3)] flex flex-col h-[550px] rounded-3xl overflow-hidden">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 p-4 border-b border-primary/20 bg-primary/20">
           <div className="flex items-center gap-3">
             <div className="relative p-2 bg-primary rounded-xl">
@@ -93,7 +93,7 @@ export function ChatBotDialog({ open, onClose }: ChatBotDialogProps) {
               </CardTitle>
               <div className="flex items-center gap-1.5 mt-0.5">
                 <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                <span className="text-[10px] text-muted-foreground font-bold uppercase">Ready to Assist</span>
+                <span className="text-[10px] text-muted-foreground font-bold uppercase">Active Session</span>
               </div>
             </div>
           </div>
@@ -125,7 +125,7 @@ export function ChatBotDialog({ open, onClose }: ChatBotDialogProps) {
                     <Loader2 className="w-4 h-4 text-primary animate-spin" />
                   </div>
                   <div className="p-3 rounded-2xl bg-muted/30 rounded-tl-none italic text-xs text-muted-foreground">
-                    Analyzing forensic data...
+                    Nayra is typing...
                   </div>
                 </div>
               )}
@@ -134,8 +134,7 @@ export function ChatBotDialog({ open, onClose }: ChatBotDialogProps) {
           </ScrollArea>
         </CardContent>
 
-        <CardFooter className="flex flex-col p-4 border-t border-primary/10 bg-muted/5 gap-4">
-          {/* Option Buttons */}
+        <CardFooter className="flex flex-col p-4 border-t border-primary/10 bg-muted/5 gap-3">
           <div className="flex flex-wrap gap-2 w-full">
             {QUICK_OPTIONS.map((opt) => (
               <Button 
@@ -156,12 +155,12 @@ export function ChatBotDialog({ open, onClose }: ChatBotDialogProps) {
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Type your message..."
-              className="bg-background/80 h-11 text-sm border-primary/20 rounded-xl"
+              placeholder="Tell Nayra what happened..."
+              className="bg-background/80 h-10 text-sm border-primary/20 rounded-xl"
               disabled={loading}
             />
-            <Button type="submit" size="icon" className="h-11 w-11 shrink-0 bg-primary rounded-xl" disabled={loading || !input.trim()}>
-              <Send className="h-5 w-5" />
+            <Button type="submit" size="icon" className="h-10 w-10 shrink-0 bg-primary rounded-xl" disabled={loading || !input.trim()}>
+              <Send className="h-4 w-4" />
             </Button>
           </form>
         </CardFooter>
