@@ -9,10 +9,10 @@ export function ScamBot() {
   return (
     <>
       <div className="fixed bottom-4 right-4 z-[90] group flex flex-col items-center pointer-events-none">
-        {/* Floating Label */}
+        {/* Floating Label - Positioned higher above the robot */}
         <div 
           onClick={() => setChatOpen(true)}
-          className="mb-[-20px] px-4 py-1.5 bg-primary text-primary-foreground text-[10px] font-black uppercase tracking-widest rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 cursor-pointer pointer-events-auto border border-white/20 hover:scale-105"
+          className="mb-[-10px] px-4 py-1.5 bg-primary text-primary-foreground text-[10px] font-black uppercase tracking-widest rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0 cursor-pointer pointer-events-auto border border-white/20 hover:scale-105 z-10"
         >
           Need Help?
         </div>
@@ -24,10 +24,9 @@ export function ScamBot() {
             loop
             muted
             playsInline
-            className="w-full h-full object-contain filter drop-shadow-[0_0_15px_rgba(132,0,255,0.4)]"
+            className="w-full h-full object-contain filter drop-shadow-[0_0_20px_rgba(132,0,255,0.5)]"
           >
             <source src="/robo.mp4" type="video/mp4" />
-            {/* Fallback if browser doesn't support transparency well in MP4 */}
           </video>
         </div>
       </div>
