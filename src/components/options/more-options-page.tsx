@@ -1,6 +1,7 @@
+
 'use client';
 
-import { Chrome, PhoneCall, ShieldAlert, MailSearch } from 'lucide-react';
+import { Chrome, PhoneCall, ShieldAlert, Newspaper } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/card';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
@@ -27,12 +28,12 @@ const options = [
     action: 'Open Scanner'
   },
   {
-    id: 'leaked-db',
-    icon: <MailSearch className="text-primary w-6 h-6" />,
-    title: 'Leaked DB Scan',
-    description: 'Cross-reference your email address against massive datasets of known global data breaches.',
-    status: 'Beta',
-    action: 'Scan Now'
+    id: 'fake-news',
+    icon: <Newspaper className="text-primary w-6 h-6" />,
+    title: 'Fake News Detector',
+    description: 'Paste news articles or claims to cross-reference them against verified fact-check repositories.',
+    status: 'Live',
+    action: 'Scan News'
   },
 ];
 

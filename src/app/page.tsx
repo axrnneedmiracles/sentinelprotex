@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -28,9 +29,10 @@ import { CallScannerPage } from '@/components/detector/call-scanner-page';
 import { ExtensionPage } from '@/components/extension/extension-page';
 import { LeakScannerPage } from '@/components/detector/leak-scanner-page';
 import { ChatBotDialog } from '@/components/chat/chatbot-dialog';
+import { FakeNewsPage } from '@/components/detector/fake-news-page';
 
 type ScanStatus = 'idle' | 'scanning' | 'success' | 'error';
-export type View = 'home' | 'detector' | 'community' | 'about' | 'admin' | 'admin-login' | 'more-options' | 'screenshot' | 'call-scanner' | 'extension' | 'leaked-db';
+export type View = 'home' | 'detector' | 'community' | 'about' | 'admin' | 'admin-login' | 'more-options' | 'screenshot' | 'call-scanner' | 'extension' | 'leaked-db' | 'fake-news';
 
 export default function Home() {
   const [status, setStatus] = useState<ScanStatus>('idle');
@@ -115,6 +117,8 @@ export default function Home() {
         return <CallScannerPage />;
       case 'leaked-db':
         return <LeakScannerPage />;
+      case 'fake-news':
+        return <FakeNewsPage />;
       case 'extension':
         return <ExtensionPage />;
       case 'community':

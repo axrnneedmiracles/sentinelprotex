@@ -47,6 +47,16 @@ export type CallAnalysisResult = {
     error?: string;
 };
 
+export type FakeNewsResult = {
+    text: string;
+    isFake: boolean;
+    riskScore: number;
+    verdict: string;
+    explanation: string;
+    analyzedAt: string;
+    error?: string;
+};
+
 export type LeakedDBResult = {
     email: string;
     isFound: boolean;

@@ -1,3 +1,4 @@
+
 import { config } from 'dotenv';
 config();
 
@@ -9,3 +10,4 @@ import '@/ai/flows/screenshot-analysis.ts';
 import '@/ai/flows/call-analysis.ts';
 import '@/ai/flows/leaked-db-scan.ts';
 import '@/ai/flows/nayra-chat-flow.ts';
+import '@/ai/flows/fake-news-analysis.ts';
