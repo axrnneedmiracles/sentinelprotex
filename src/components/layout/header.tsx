@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { Info, Shield } from 'lucide-react';
 import { type View } from '@/app/page';
-import { StaggeredMenu } from '@/components/ui/staggered-menu';
+import { SentinelMenu } from './sentinel-menu';
 
 interface HeaderProps {
   onDetectorClick: () => void;
@@ -25,36 +25,18 @@ export function Header({ onAboutClick, onAdminClick, onNavigate, onContactClick 
     { label: 'Contact Us', onClick: onContactClick }
   ];
 
-  const socialItems = [
-    { label: 'GitHub', link: '#' },
-    { label: 'Twitter', link: '#' },
-    { label: 'LinkedIn', link: '#' }
-  ];
-
   return (
-    <div className="relative w-full">
-      <StaggeredMenu
-        position="right"
-        items={menuItems}
-        socialItems={socialItems}
-        displaySocials={true}
-        displayItemNumbering={true}
-        menuButtonColor="#ffffff"
-        openMenuButtonColor="#000000"
-        changeMenuColorOnOpen={true}
-        colors={['#B19EEF', '#5227FF', '#1a1a1a']}
-        logoUrl="/logo.gif"
-        accentColor="#d129ff"
-        isFixed={true}
-      />
-      
-      {/* Absolute overlay for additional buttons that aren't part of the custom menu component */}
-      <div className="absolute top-8 right-32 flex items-center gap-2 z-30 pointer-events-auto">
+    <header className="fixed top-0 left-0 w-full z-50 flex items-center justify-between p-6 pointer-events-none">
+      <div className="flex items-center gap-4 pointer-events-auto cursor-target" onClick={() => onNavigate('home')}>
+        <img src="/logo.gif" alt="Sentinel Logo" className="h-10 w-auto" />
+      </div>
+
+      <div className="flex items-center gap-3 pointer-events-auto">
         <Button 
           variant="ghost" 
           size="icon" 
           onClick={onAboutClick} 
-          className="hover:bg-primary/20 hover:text-primary-foreground transition-colors cursor-target text-white hidden sm:flex"
+          className="hover:bg-primary/20 hover:text-primary-foreground transition-colors cursor-target text-white hidden sm:flex h-10 w-10 rounded-full border border-white/10 bg-black/20 backdrop-blur-md"
         >
           <Info className="w-5 h-5" />
           <span className="sr-only">About Us</span>
@@ -63,12 +45,14 @@ export function Header({ onAboutClick, onAdminClick, onNavigate, onContactClick 
           variant="ghost" 
           size="icon" 
           onClick={onAdminClick} 
-          className="hover:bg-destructive/20 hover:text-destructive transition-colors cursor-target text-white hidden sm:flex"
+          className="hover:bg-destructive/20 hover:text-destructive transition-colors cursor-target text-white hidden sm:flex h-10 w-10 rounded-full border border-white/10 bg-black/20 backdrop-blur-md"
         >
           <Shield className="w-5 h-5" />
           <span className="sr-only">Admin Panel</span>
         </Button>
+        
+        <SentinelMenu items={menuItems} />
       </div>
-    </div>
+    </header>
   );
 }
