@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Chrome, ShieldCheck, Zap, Download, ArrowRight, Puzzle } from 'lucide-react';
@@ -5,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import { useToast } from '@/hooks/use-toast';
+import SplitText from '@/components/ui/split-text';
 
 const features = [
   {
@@ -49,9 +51,19 @@ export function ExtensionPage() {
           <Badge className="bg-accent/20 text-accent border-accent/20 px-4 py-1 text-sm">
             V1.2.0 NOW LIVE
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-black tracking-tight text-primary-foreground">
-            PROTECTION THAT <br />
-            <span className="text-primary">FOLLOWS YOU.</span>
+          <h1 className="text-4xl md:text-5xl font-black tracking-tight text-primary-foreground leading-tight">
+            <SplitText 
+              text="PROTECTION THAT" 
+              textAlign="left"
+              delay={40}
+              className="block"
+            />
+            <SplitText 
+              text="FOLLOWS YOU." 
+              textAlign="left"
+              delay={40}
+              className="text-primary block"
+            />
           </h1>
           <p className="text-lg text-muted-foreground leading-relaxed">
             Stop checking links manually. Our Chrome extension brings the power of Sentinel Scan directly to your browser, scanning for threats in real-time as you browse.
