@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Button } from '@/components/ui/button';
@@ -27,14 +28,20 @@ export function Header() {
         <Link href="/" className="flex items-center gap-4 cursor-target">
           <img src="/logo.gif" alt="Sentinel Logo" className="h-10 w-auto" />
         </Link>
-        <Link href="/extension">
+        <Link href="/extension" className="hidden md:flex">
           <Button 
             variant="outline" 
             size="sm" 
-            className="hidden md:flex bg-primary/10 border-primary/30 hover:bg-primary/20 text-[10px] font-black tracking-widest rounded-full h-9 px-4 cursor-target backdrop-blur-md"
+            className="relative bg-primary/10 border-primary/40 hover:bg-primary/20 text-[11px] font-black tracking-widest rounded-full h-10 px-5 cursor-target backdrop-blur-md overflow-hidden transition-all hover:scale-105 active:scale-95 group"
           >
-            <Download className="mr-2 h-3.5 w-3.5" />
-            DOWNLOAD OUR APP
+            {/* Shimmer Effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[header-shimmer_2s_infinite] pointer-events-none" />
+            
+            <Download className="mr-2 h-4 w-4 text-primary" />
+            <span className="relative z-10">DOWNLOAD OUR APP</span>
+            
+            {/* Subtle pulse for visibility */}
+            <div className="absolute inset-0 rounded-full border border-primary/20 animate-pulse pointer-events-none" />
           </Button>
         </Link>
       </div>
@@ -63,6 +70,14 @@ export function Header() {
         
         <SentinelMenu items={menuItems} />
       </div>
+
+      <style jsx>{`
+        @keyframes header-shimmer {
+          100% {
+            transform: translateX(100%);
+          }
+        }
+      `}</style>
     </header>
   );
 }
