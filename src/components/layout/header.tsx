@@ -12,6 +12,15 @@ export function Header() {
   const router = useRouter();
   const { setChatOpen } = useUI();
 
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = '/app-debug.apk';
+    link.setAttribute('download', 'app-debug.apk');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const menuItems = [
     { label: 'Scan Messages', onClick: () => router.push('/') },
     { label: 'AI Image Detector', onClick: () => router.push('/detector') },
@@ -28,10 +37,11 @@ export function Header() {
         <Link href="/" className="flex items-center gap-4 cursor-target">
           <img src="/logo.gif" alt="Sentinel Logo" className="h-10 w-auto" />
         </Link>
-        <Link href="/extension" className="hidden md:flex">
+        <div className="hidden md:flex">
           <Button 
             variant="outline" 
             size="sm" 
+            onClick={handleDownload}
             className="relative bg-primary/10 border-primary/40 hover:bg-primary/20 text-[11px] font-black tracking-widest rounded-full h-10 px-5 cursor-target backdrop-blur-md overflow-hidden transition-all hover:scale-105 active:scale-95 group"
           >
             {/* Shimmer Effect */}
@@ -43,7 +53,7 @@ export function Header() {
             {/* Subtle pulse for visibility */}
             <div className="absolute inset-0 rounded-full border border-primary/20 animate-pulse pointer-events-none" />
           </Button>
-        </Link>
+        </div>
       </div>
 
       <div className="flex items-center gap-3 pointer-events-auto">
