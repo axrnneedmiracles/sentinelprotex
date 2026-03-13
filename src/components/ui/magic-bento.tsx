@@ -1,7 +1,7 @@
-
 'use client';
 import { useRef, useEffect, useState, useCallback, CSSProperties, ReactNode } from 'react';
 import { gsap } from 'gsap';
+import { useRouter } from 'next/navigation';
 
 const DEFAULT_PARTICLE_COUNT = 12;
 const DEFAULT_SPOTLIGHT_RADIUS = 300;
@@ -492,8 +492,6 @@ const useMobileDetection = () => {
   return isMobile;
 };
 
-type View = 'home' | 'detector' | 'community' | 'about' | 'admin' | 'admin-login' | 'more-options' | 'screenshot' | 'fake-news';
-
 interface MagicBentoProps {
     textAutoHide?: boolean;
     enableStars?: boolean;
@@ -506,7 +504,6 @@ interface MagicBentoProps {
     glowColor?: string;
     clickEffect?: boolean;
     enableMagnetism?: boolean;
-    onCardClick: (view: View) => void;
 }
 
 const MagicBento = ({
@@ -521,14 +518,14 @@ const MagicBento = ({
   glowColor = DEFAULT_GLOW_COLOR,
   clickEffect = true,
   enableMagnetism = true,
-  onCardClick
 }: MagicBentoProps) => {
   const gridRef = useRef<HTMLDivElement>(null);
   const isMobile = useMobileDetection();
   const shouldDisableAnimations = disableAnimations || isMobile;
+  const router = useRouter();
 
   const handleCardClick = (id: string) => {
-    onCardClick(id as View);
+    router.push(`/${id}`);
   };
 
   const renderCard = (card: typeof cardData[0], index: number) => {

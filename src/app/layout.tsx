@@ -5,7 +5,11 @@ import TargetCursor from '@/components/cursor/target-cursor';
 import { AdminProvider } from '@/context/admin-context';
 import { FirebaseClientProvider } from '@/firebase/client-provider';
 import { CommunityProvider } from '@/context/community-context';
+import { UIProvider } from '@/context/ui-context';
 import Script from 'next/script';
+import { BackgroundAnimation } from '@/components/background-animation';
+import { Header } from '@/components/layout/header';
+import { GlobalChatWrapper } from '@/components/chat/global-chat-wrapper';
 
 export const metadata: Metadata = {
   title: 'Sentinel Scan',
@@ -33,9 +37,23 @@ export default function RootLayout({
         <FirebaseClientProvider>
           <AdminProvider>
             <CommunityProvider>
+              <UIProvider>
                 <TargetCursor spinDuration={2} hideDefaultCursor={true} />
-                {children}
+                <div className="min-h-screen w-full relative">
+                  <BackgroundAnimation />
+                  <div className="relative z-10 flex flex-col min-h-screen">
+                    <Header />
+                    <main className="flex-grow container mx-auto px-4 py-24 flex flex-col items-center justify-start gap-12">
+                      {children}
+                    </main>
+                    <footer className="text-center p-4 text-muted-foreground text-sm">
+                      POWERED BY AXRN. Stay Safe Online.
+                    </footer>
+                  </div>
+                  <GlobalChatWrapper />
+                </div>
                 <Toaster />
+              </UIProvider>
             </CommunityProvider>
           </AdminProvider>
         </FirebaseClientProvider>
