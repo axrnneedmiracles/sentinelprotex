@@ -1,6 +1,6 @@
 'use client';
 
-import { ShieldCheck, Download, Info } from 'lucide-react';
+import { ShieldCheck, Download, Info, Lock } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import { useToast } from '@/hooks/use-toast';
@@ -15,6 +15,13 @@ import {
 
 const PLATFORMS = [
   "Instagram", "WhatsApp", "Facebook", "X (Twitter)", "Discord", "Gmail"
+];
+
+const FEATURES = [
+  {
+    title: "Parental Guardian",
+    description: "Provides comprehensive protection to block misuse of card details and saved payment methods by children unless explicitly authorized by a guardian."
+  }
 ];
 
 export function ExtensionPage() {
@@ -70,6 +77,22 @@ export function ExtensionPage() {
                     </span>
                 ))}
             </div>
+        </div>
+
+        {/* Advanced Safeguards Section */}
+        <div className="w-full max-w-2xl bg-primary/5 border border-primary/10 rounded-3xl p-6 md:p-8 space-y-4">
+            <div className="flex items-center justify-center gap-2 mb-2">
+                <Lock className="w-4 h-4 text-accent" />
+                <h2 className="text-sm font-black uppercase tracking-widest text-primary-foreground">Advanced Safeguards</h2>
+            </div>
+            {FEATURES.map((f, i) => (
+                <div key={i} className="space-y-2">
+                    <h3 className="text-xl font-bold text-accent">{f.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
+                        {f.description}
+                    </p>
+                </div>
+            ))}
         </div>
         
         <div className="pt-4 flex flex-col items-center gap-6">
