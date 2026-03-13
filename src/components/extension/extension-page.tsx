@@ -68,33 +68,7 @@ export function ExtensionPage() {
           </p>
         </div>
 
-        <div className="space-y-4 w-full max-w-xl">
-            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-primary/60">Supported Ecosystems</p>
-            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-                {PLATFORMS.map((p) => (
-                    <span key={p} className="text-xs font-bold text-muted-foreground/80 hover:text-primary transition-colors cursor-default">
-                        {p}
-                    </span>
-                ))}
-            </div>
-        </div>
-
-        {/* Advanced Safeguards Section */}
-        <div className="w-full max-w-2xl bg-primary/5 border border-primary/10 rounded-3xl p-6 md:p-8 space-y-4">
-            <div className="flex items-center justify-center gap-2 mb-2">
-                <Lock className="w-4 h-4 text-accent" />
-                <h2 className="text-sm font-black uppercase tracking-widest text-primary-foreground">Advanced Safeguards</h2>
-            </div>
-            {FEATURES.map((f, i) => (
-                <div key={i} className="space-y-2">
-                    <h3 className="text-xl font-bold text-accent">{f.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
-                        {f.description}
-                    </p>
-                </div>
-            ))}
-        </div>
-        
+        {/* Download Section Moved Up */}
         <div className="pt-4 flex flex-col items-center gap-6">
           <Button 
             size="lg" 
@@ -142,6 +116,33 @@ export function ExtensionPage() {
                 </DialogContent>
             </Dialog>
           </div>
+        </div>
+
+        <div className="space-y-4 w-full max-w-xl">
+            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-primary/60">Supported Ecosystems</p>
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                {PLATFORMS.map((p) => (
+                    <span key={p} className="text-xs font-bold text-muted-foreground/80 hover:text-primary transition-colors cursor-default">
+                        {p}
+                    </span>
+                ))}
+            </div>
+        </div>
+
+        {/* Advanced Safeguards Section */}
+        <div className="w-full max-w-2xl bg-primary/5 border border-primary/10 rounded-3xl p-6 md:p-8 space-y-4">
+            <div className="flex items-center justify-center gap-2 mb-2">
+                <Lock className="w-4 h-4 text-accent" />
+                <h2 className="text-sm font-black uppercase tracking-widest text-primary-foreground">Advanced Safeguards</h2>
+            </div>
+            {FEATURES.map((f, i) => (
+                <div key={i} className="space-y-2">
+                    <h3 className="text-xl font-bold text-accent">{f.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
+                        {f.description}
+                    </p>
+                </div>
+            ))}
         </div>
       </div>
 
