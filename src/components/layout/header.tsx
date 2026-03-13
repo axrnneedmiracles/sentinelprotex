@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Users, Shield } from 'lucide-react';
+import { Users, Shield, Download } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { SentinelMenu } from './sentinel-menu';
 import { useUI } from '@/context/ui-context';
@@ -23,9 +23,21 @@ export function Header() {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 flex items-center justify-between p-6 pointer-events-none">
-      <Link href="/" className="flex items-center gap-4 pointer-events-auto cursor-target">
-        <img src="/logo.gif" alt="Sentinel Logo" className="h-10 w-auto" />
-      </Link>
+      <div className="flex items-center gap-4 pointer-events-auto">
+        <Link href="/" className="flex items-center gap-4 cursor-target">
+          <img src="/logo.gif" alt="Sentinel Logo" className="h-10 w-auto" />
+        </Link>
+        <Link href="/extension">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="hidden md:flex bg-primary/10 border-primary/30 hover:bg-primary/20 text-[10px] font-black tracking-widest rounded-full h-9 px-4 cursor-target backdrop-blur-md"
+          >
+            <Download className="mr-2 h-3.5 w-3.5" />
+            DOWNLOAD OUR APP
+          </Button>
+        </Link>
+      </div>
 
       <div className="flex items-center gap-3 pointer-events-auto">
         <Link href="/community">
