@@ -13,7 +13,8 @@ export function Header() {
 
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = '/app-debug.zip';
+    // Updated path to reflect the 'app' subfolder in public directory
+    link.href = '/app/app-debug.zip';
     link.setAttribute('download', 'app-debug.zip');
     document.body.appendChild(link);
     link.click();
